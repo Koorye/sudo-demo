@@ -45,9 +45,7 @@
 		},
 		methods: {
 			back() {
-				uni.switchTab({
-					url: "me"
-				});
+				uni.navigateBack();
 			},
 			send() {
 				let that = this;

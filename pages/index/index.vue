@@ -119,6 +119,23 @@
 				direction: ''
 			}
 		},
+		onLoad() {				// 进入首页时，判断是否已登录，若未登录，跳到登录页。
+			uni.getStorage({
+				key: "isLogin",
+				success(res) {
+					if(res.data == false) {
+						uni.redirectTo({
+							url: "./login"
+						});
+					}
+				},
+				fail() {
+					uni.redirectTo({
+						url: "./login"
+					});
+				}
+			});
+		}
 	}
 </script>
 

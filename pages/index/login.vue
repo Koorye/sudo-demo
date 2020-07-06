@@ -20,25 +20,22 @@
 					<view>
 						<image class="loginIcon" src="/static/icon/username.png"></image>
 					</view>
-					<input type="text" placeholder="请输入用户名" placeholder-style="color:#A5A5A5" v-model="username" />
+					<input type="text" placeholder="请输入手机号" placeholder-style="color:#A5A5A5" v-model="username" @input="checkLoginPermit()"/>
 				</view>
 				<view class="line"></view>
 				<view class="inputBox">
 					<view>
 						<image class="loginIcon" src="/static/icon/password.png"></image>
 					</view>
-					<input type="password" placeholder="请输入密码" placeholder-style="color:#A5A5A5" v-model="password" />
+					<input type="password" placeholder="请输入密码" placeholder-style="color:#A5A5A5" v-model="password" @input="checkLoginPermit()"/>
 				</view>
 				<view class="line"></view>
 				<navigator id="forgetPassword">忘记密码？</navigator>
 				<view id="btnBox">
-					<button class="btn" @tap="login">登录</button>
+					<button class="btn" @tap="login" v-bind:disabled="dis_login">登录</button>
 					<button class="btn" @tap="register">注册</button>
 				</view>
 			</view>
-		</view>
-		<view id="demo">
-			<view>测试版本，点击登录即可进入主页</view>
 		</view>
 	</view>
 </template>
@@ -48,22 +45,68 @@
 		data() {
 			return {
 				username: '',
-				password: ''
+				password: '',
+				dis_login: true       // 没填写手机号和密码时，不允许点击登录
 			}
 		},
 		methods: {
+			checkLoginPermit() {
+				if(this.username != '' && this.password != '')
+					this.dis_login = false;
+				else
+					this.dis_login = true;
+			},
 			login() {
-				uni.switchTab({
-					url: "index",
-					fail(err) {
-						console.log(err);
+				uni.request({
+					method: "POST",
+					url: this.requestURL + "/accounts/login",
+					dataType: "json",
+					header:{
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					data:{
+						"username": this.username,
+						"password": this.password
+					},
+					success: (res) =>{
+						let response = res.data;
+						console.log(response);
+						if(response.success) {			// 登录成功时，记录下token，并跳转到首页。并且下次打开app时，不再进入登录页面
+							uni.setStorage({
+								key: "token",
+								data: response.data,
+							});
+							uni.setStorage({
+								key: "isLogin",
+								data: true
+							});
+							uni.setStorage({
+								key: "username",
+								data: this.username
+							});
+							uni.switchTab({
+								url: "index"
+							});
+						}
+						else {							// 登录失败时，弹窗提示
+							uni.showModal({
+								title: "失败",
+								content: response.errMsg
+							});
+						}
+					},
+					fail() {
+						uni.showModal({
+							title: "登录失败",
+							content: "请检查网络连接"
+						});
 					}
-				})
+				});
 			},
 			register() {
-				uni.redirectTo({
-					url: "register"
-				})
+				uni.navigateTo({
+					url: './register'
+				});
 			}
 		}
 	}
@@ -148,11 +191,5 @@
 		margin-left: 15%;
 		height: 1rpx;
 		background: #AAAAAA;
-	}
-
-	#demo {
-		margin-top: 1100rpx;
-		text-align: center;
-		font-size: 30rpx;
 	}
 </style>

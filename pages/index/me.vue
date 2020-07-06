@@ -70,6 +70,7 @@
 				<view class="optionMark"> > </view>
 			</view>
 			<view class="line"></view>
+			<button class="btn" @tap="quit">退出登录</button>
 		</view>
 	</view>
 </template>
@@ -78,18 +79,33 @@
 	export default {
 		data() {
 			return {
-				userID:this.globalUserID,
+				userID: this.globalUserID,
 				userSculpture: this.globalUserSculptrue
 			}
 		},
+		onLoad() {
+			let _this = this;
+			uni.getStorage({
+				key: "username",
+				success(res) {
+					_this.userID = res.data;
+				}
+			});
+		},
 		methods: {
 			toFeedBack() {
+				uni.navigateTo({
+					url: "feedback"
+				});
+			},
+			quit() {
+				uni.setStorage({
+					key: "isLogin",
+					data: false
+				});
 				uni.redirectTo({
-					url: "feedback",
-					fail(err) {
-						console.log(err);
-					}
-				})
+					url: "./login"
+				});
 			}
 		}
 	}
@@ -203,5 +219,16 @@
 		width: 100%;
 		height: 1rpx;
 		background: #AAAAAA;
+	}
+	
+	.btn {
+		margin-top: 60rpx;
+		width: 400rpx;
+		height: 80rpx;
+		background-color: #CD3A44;
+		border-radius: 40rpx;
+		font-size: 32rpx;
+		color: #FFFFFF;
+		box-shadow: 0rpx 0rpx 10rpx #AAAAAA;
 	}
 </style>
