@@ -69,14 +69,22 @@
 				"navigationBarTitleText": "搜索",
 				"backgroundColor":"#FFFFFF"
 			}
-		},{
+		},
+		{
 			"path" : "pages/index/feedback",
 			"style" : {
 				"navigationBarTitleText": "反馈",
 				"backgroundColor":"#FFFFFF"
 			}
-		}
-	    ,{
+		},
+		{
+			"path" : "pages/index/authentication",
+			"style" : {
+				"navigationBarTitleText": "身份认证",
+				"backgroundColor":"#FFFFFF"
+			}
+		},
+		{
             "path" : "pages/index/todo",
             "style" : {
 				"navigationBarTitleText": "TODO",

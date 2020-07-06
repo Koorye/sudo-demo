@@ -54,7 +54,7 @@
 				<view class="optionMark"> > </view>
 			</view>
 			<view class="line"></view>
-			<view class="option">
+			<view class="option" @tap="toAuthentication">
 				<view>
 					<image class="optionImg" src="../../static/icon/verify.png"></image>
 				</view>
@@ -96,6 +96,11 @@
 			toFeedBack() {
 				uni.navigateTo({
 					url: "feedback"
+				});
+			},
+			toAuthentication() {
+				uni.navigateTo({
+					url: "authentication"
 				});
 			},
 			quit() {
