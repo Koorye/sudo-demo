@@ -13,7 +13,6 @@
 				<view>
 					<image id="logo" src="/static/icon/logo.png"></image>
 				</view>
-				<view>SUDO</view>
 				<view>注册</view>
 			</view>
 			<view id="registerBox">
@@ -21,24 +20,32 @@
 					<view>
 						<image class="registerIcon" src="/static/icon/username.png"></image>
 					</view>
-					<input type="text" placeholder="请输入用户名" placeholder-style="color:#A5A5A5" v-model="username" />
+					<input type="text" placeholder="请输入手机号" placeholder-style="color:#A5A5A5" v-model="username" @input="checkRegisterPermit()"/>
+					<button v-if="showSendCaptcha" class="sendCaptcha" @tap="sendCaptcha()">获取验证码</button>
 				</view>
 				<view class="line"></view>
 				<view class="inputBox">
 					<view>
 						<image class="registerIcon" src="/static/icon/password.png"></image>
 					</view>
-					<input type="password" placeholder="请输入密码" placeholder-style="color:#A5A5A5" v-model="password" />
+					<input type="text" placeholder="请输入验证码" placeholder-style="color:#A5A5A5" v-model="captcha" @input="checkRegisterPermit()"/>
 				</view>
 				<view class="line"></view>
 				<view class="inputBox">
 					<view>
 						<image class="registerIcon" src="/static/icon/password.png"></image>
 					</view>
-					<input type="password" placeholder="请确认密码" placeholder-style="color:#A5A5A5" v-model="verift" />
+					<input type="password" placeholder="请输入密码" placeholder-style="color:#A5A5A5" v-model="password" @input="checkRegisterPermit()"/>
 				</view>
 				<view class="line"></view>
-				<button class="btn" @tap="register">注册</button>
+				<view class="inputBox">
+					<view>
+						<image class="registerIcon" src="/static/icon/password.png"></image>
+					</view>
+					<input type="password" placeholder="请确认密码" placeholder-style="color:#A5A5A5" v-model="verify" @input="checkRegisterPermit()"/>
+				</view>
+				<view class="line"></view>
+				<button class="btn" @tap="register" v-bind:disabled="dis_register">注册</button>
 				<view id="navBox">
 					<navigator id="navBtn">已有账户点击登录</navigator>
 					<navigator id="navBtn">注册须知</navigator>
@@ -53,14 +60,80 @@
 		data() {
 			return {
 				username: '',
+				captcha: '',
 				password: '',
-				verify: ''
+				verify: '',
+				dis_register: true,
+				showSendCaptcha: false
 			}
 		},
 		methods: {
 			back() {
-				uni.redirectTo({
-					url: "login"
+				uni.navigateBack();
+			},
+			checkRegisterPermit() {
+				if(this.username != '')
+					this.showSendCaptcha = true;	//输入电话号码后才展示发送验证码按钮
+				else
+					this.showSendCaptcha = false;
+				if(this.username != '' && this.captcha != '' && this.password != '' && this.verify != '')		//所有信息都填写后，才能点击注册
+					this.dis_register = false;
+				else
+					this.dis_register = true;
+			},
+			sendCaptcha() {							//获取验证码
+				uni.showModal({
+					title: "验证码",
+					content: "0000"
+				});
+			},
+			register() {
+				if(this.password != this.verify) {
+					uni.showToast({
+						title: '两次输入密码不一致',
+						icon: 'none',
+						duration: 1000
+					});
+					return;
+				}
+				uni.request({
+					method: "POST",
+					url: this.requestURL + "/accounts/register",
+					dataType: "json",
+					header:{
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					data:{
+						"username": this.username,
+						"code": this.captcha,
+						"password": this.password
+					},
+					success(res) {
+						let response = res.data;
+						console.log(response);
+						if(response.success) {
+							uni.showToast({
+								title: '注册成功',
+								icon: 'none',
+								duration: 1000
+							});
+							uni.redirectTo({
+								url: "./login"
+							});
+						}
+						else {
+							uni.showModal({
+								title: "失败",
+								content: response.errMsg
+							});
+						}
+					},
+					fail() {
+						uni.showModal({
+							title: "登录失败",
+							content: "请检查网络连接"
+						});
+					}
 				});
 			}
 		}
@@ -109,6 +182,15 @@
 		width: 80%;
 		margin-left: 10%;
 		margin-top: 60rpx;
+	}
+	
+	.sendCaptcha {
+		width: 40%;
+		background-color: #CD3A44;
+		border-radius: 40rpx;
+		font-size: 25rpx;
+		color: #FFFFFF;
+		box-shadow: 0rpx 0rpx 10rpx #AAAAAA;
 	}
 
 	.registerIcon {
