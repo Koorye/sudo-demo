@@ -1,0 +1,126 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/automony",
+			"style": {
+				"navigationBarTitleText": "自治",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/resource",
+			"style": {
+				"navigationBarTitleText": "资源",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/life",
+			"style": {
+				"navigationBarTitleText": "生活",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/me",
+			"style": {
+				"navigationBarTitleText": "我",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/map",
+			"style": {
+				"navigationBarTitleText": "地图",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/address-search/address-search",
+			"style": {
+				"navigationBarTitleText": "地址搜索",
+				"background":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"backgroundColor":"#FFFFFF"
+			}
+		},{
+			"path" : "pages/index/feedback",
+			"style" : {
+				"navigationBarTitleText": "反馈",
+				"backgroundColor":"#FFFFFF"
+			}
+		}
+	    ,{
+            "path" : "pages/index/todo",
+            "style" : {
+				"navigationBarTitleText": "TODO",
+				"backgroundColor":"#FFFFFF"
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"color": "#FFFFFF",
+		"selectedColor": "#FFFFFF",
+		"borderStyle": "black",
+		"backgroundColor": "#CD3A44",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/icon/index.png",
+			"selectedIconPath": "static/icon/index_selected.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/index/automony",
+			"iconPath": "static/icon/cloud.png",
+			"selectedIconPath": "static/icon/cloud_selected.png",
+			"text": "自治"
+		}, {
+			"pagePath": "pages/index/resource",
+			"iconPath": "static/icon/resource.png",
+			"selectedIconPath": "static/icon/resource_selected.png",
+			"text": "资源"
+		}, {
+			"pagePath": "pages/index/life",
+			"iconPath": "static/icon/life.png",
+			"selectedIconPath": "static/icon/life_select.png",
+			"text": "生活"
+		}, {
+			"pagePath": "pages/index/me",
+			"iconPath": "static/icon/me.png",
+			"selectedIconPath": "static/icon/me_selected.png",
+			"text": "我"
+		}]
+	}
+}

@@ -1,0 +1,207 @@
+<template>
+	<view class="page">
+		<view class="back"></view>
+		<!-- 导航栏 -->
+		<cu-custom bgColor="bg-custom" :isBack="false">
+		</cu-custom>
+
+		<!-- 顶部栏 -->
+		<view id="top">
+			<!-- 个人信息 -->
+			<view id="info">
+				<view id="idBox">
+					<view>
+						<image id="sculpture" :src="userSculpture"></image>
+					</view>
+					<view id="userID">{{userID}}</view>
+				</view>
+				<view></view>
+				<view id="editBtn">编辑 ></view>
+			</view>
+
+			<!-- 功能区 -->
+			<view id="functionTable">
+				<view class="functionBox">
+					<image class="functionImg" src="/static/icon/member.png"></image>
+					<view>党组织部</view>
+				</view>
+				<view class="functionBox">
+					<image class="functionImg" src="/static/icon/property.png"></image>
+					<view>物业</view>
+				</view>
+				<view class="functionBox">
+					<image class="functionImg" src="/static/icon/neighborhood.png"></image>
+					<view>居委会</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 选项区 -->
+		<view class="optionBox">
+			<view class="option" @tap="toFeedBack">
+				<view>
+					<image class="optionImg" src="/static/icon/feedback.png"></image>
+				</view>
+				<view class="optionText">反馈</view>
+				<view class="optionMark"> > </view>
+			</view>
+			<view class="line"></view>
+			<view class="option">
+				<view>
+					<image class="optionImg" src="/static/icon/my_activity.png"></image>
+				</view>
+				<view class="optionText">我的活动</view>
+				<view class="optionMark"> > </view>
+			</view>
+			<view class="line"></view>
+			<view class="option">
+				<view>
+					<image class="optionImg" src="../../static/icon/verify.png"></image>
+				</view>
+				<view class="optionText">身份验证</view>
+				<view class="optionMark"> > </view>
+			</view>
+			<view class="line"></view>
+			<view class="option">
+				<view>
+					<image class="optionImg" src="/static/icon/about.png"></image>
+				</view>
+				<view class="optionText">关于SODU社达</view>
+				<view class="optionMark"> > </view>
+			</view>
+			<view class="line"></view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				userID:this.globalUserID,
+				userSculpture: this.globalUserSculptrue
+			}
+		},
+		methods: {
+			toFeedBack() {
+				uni.redirectTo({
+					url: "feedback",
+					fail(err) {
+						console.log(err);
+					}
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	#top {
+		width: 100%;
+		height: 300rpx;
+		background-color: #CD3A44;
+		z-index: 1;
+		position: absolute;
+	}
+
+	#info {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#idBox {
+		display: flex;
+		align-items: center;
+	}
+
+	#sculpture {
+		width: 133rpx;
+		height: 133rpx;
+		margin: 33rpx;
+	}
+
+	#userID {
+		font-size: 40rpx;
+		font-weight: bold;
+		color: #FFFFFF;
+	}
+
+	#editBtn {
+		margin-right: 40rpx;
+		font-size: 40rpx;
+		font-weight: bold;
+		color: #FFFFFF;
+	}
+
+	#functionTable {
+		z-index: 2;
+		position: relative;
+		top: 20rpx;
+		background-color: #FFFFFF;
+		width: 90%;
+		margin-left: 5%;
+		padding: 40rpx;
+		border-radius: 50rpx;
+		display: flex;
+		justify-content: space-around;
+		box-shadow: 0rpx 10rpx 10rpx #DDDDDD;
+	}
+
+	.functionBox {
+		width: 133rpx;
+		text-align: center;
+		font-size: 27rpx;
+		font-weight: bold;
+		color: #CD3A44;
+	}
+
+	.functionImg {
+		width: 133rpx;
+		height: 133rpx;
+		padding: 20rpx;
+		border: 4rpx solid #CD3A44;
+		border-radius: 50%;
+		box-shadow: 0rpx 0rpx 15rpx #AAAAAA;
+		margin-bottom: 10rpx;
+	}
+
+	.optionBox {
+		margin-top: 600rpx;
+		margin-left: 5%;
+		width: 90%;
+	}
+
+	.option {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 70rpx;
+		margin-bottom: 5rpx;
+	}
+
+	.optionImg {
+		width: 46rpx;
+		height: 46rpx;
+		margin-right: 16rpx;
+	}
+
+	.optionText {
+		margin-right: auto;
+		margin-bottom: 12rpx;
+		font-size: 30rpx;
+		font-weight: bold;
+		color: #35312E;
+	}
+
+	.optionMark {
+		font-size: 32rpx;
+		color: #35312E;
+	}
+
+	.line {
+		width: 100%;
+		height: 1rpx;
+		background: #AAAAAA;
+	}
+</style>
