@@ -70,7 +70,7 @@
 				<view class="optionMark"> > </view>
 			</view>
 			<view class="line"></view>
-			<button class="btn" @tap="quit">退出登录</button>
+			<button class="btn" @tap="logout">退出登录</button>
 		</view>
 	</view>
 </template>
@@ -80,6 +80,7 @@
 		data() {
 			return {
 				userID: this.globalUserID,
+				token: '',
 				userSculpture: this.globalUserSculptrue
 			}
 		},
@@ -89,6 +90,12 @@
 				key: "username",
 				success(res) {
 					_this.userID = res.data;
+				}
+			});
+			uni.getStorage({
+				key: "token",
+				success(res) {
+					_this.token = res.data;
 				}
 			});
 		},
@@ -103,14 +110,42 @@
 					url: "authentication"
 				});
 			},
-			quit() {
-				uni.setStorage({
-					key: "isLogin",
-					data: false
+			logout() {
+				console.log(this.token);
+				uni.request({
+					method: "GET",
+					url: this.requestURL + "/accounts/logout",
+					dataType: "json",
+					header:{
+						'content-type': 'application/x-www-form-urlencoded',
+						'token': this.token
+					},
+					success(res) {
+						let response = res.data;
+						if(response.success) {
+							uni.setStorage({
+								key: "isLogin",
+								data: false
+							});
+							uni.redirectTo({
+								url: "./login"
+							});
+						}
+						else {
+							uni.showModal({
+								title: "失败",
+								content: response.errMsg
+							});
+						}
+					},
+					fail() {
+						uni.showModal({
+							title: "登录失败",
+							content: "请检查网络连接"
+						});
+					}
 				});
-				uni.redirectTo({
-					url: "./login"
-				});
+				
 			}
 		}
 	}

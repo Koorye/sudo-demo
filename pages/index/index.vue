@@ -116,16 +116,60 @@
 				}],
 				dotStyle: false,
 				towerStart: 0,
-				direction: ''
+				direction: '',
+				token: ''
 			}
 		},
-		onLoad() {				// 进入首页时，判断是否已登录，若未登录，跳到登录页。
+		onLoad() {				// 进入首页时，判断是否已登录。
+			var _this = this;
 			uni.getStorage({
 				key: "isLogin",
 				success(res) {
-					if(res.data == false) {
+					if(res.data == false) {   //若未登录，跳到登录页
 						uni.redirectTo({
 							url: "./login"
+						});
+					}
+					else {		//如果登录了，还要判断token是否过期
+						uni.getStorage({
+							key: "token",
+							success(res) {
+								_this.token = res.data;
+							}
+						});
+						uni.request({
+							method: "POST",
+							url: _this.requestURL + "/accounts/verifyToken",
+							dataType: "json",
+							header:{
+								'content-type': 'application/x-www-form-urlencoded',
+								'token': _this.token
+							},
+							success(res) {
+								let response = res.data;
+								if(response.success) {		//如果没过期，刷新token
+									_this.token = response.data;
+									uni.setStorage({
+										key: "token",
+										data: _this.token
+									});
+								}
+								else {						//如果过期了，重新登录
+									uni.setStorage({
+										key: "isLogin",
+										data: false
+									});
+									uni.redirectTo({
+										url: "./login"
+									});
+								}
+							},
+							fail() {
+								uni.showModal({
+									title: "登录失败",
+									content: "请检查网络连接"
+								});
+							}
 						});
 					}
 				},

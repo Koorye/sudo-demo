@@ -92,6 +92,7 @@
 				},
 				success(res) {
 					let response = res.data;
+					console.log(response);
 					if(response.success) {
 						_this.state = response.data.state;
 						_this.province = response.data.province;
