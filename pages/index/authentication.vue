@@ -184,13 +184,17 @@
 </script>
 
 <style>
+  .back {
+     background: #FFFFFF;
+  }
+  
 	#topBox {
 		z-index: 999;
 		width: 100%;
 		padding-left: 5%;
 		padding-top: 40rpx;
 		display: flex;
-		color: #CD3A44;
+		color: #ED5941;
 		font-size: 40rpx;
 		position: fixed;
 		background-color: #FFFFFF;
@@ -212,7 +216,7 @@
 		width: 140rpx;
 		height: 60rpx;
 		color: #FFFFFF;
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		border-radius: 24rpx;
 		font-size: 34rpx;
 	}
@@ -241,7 +245,7 @@
 		margin-top: 60rpx;
 		width: 400rpx;
 		height: 80rpx;
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		border-radius: 40rpx;
 		font-size: 32rpx;
 		color: #FFFFFF;
@@ -253,7 +257,7 @@
 		margin-left: 15%;
 		width: 200rpx;
 		height: 80rpx;
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		border-radius: 40rpx;
 		font-size: 32rpx;
 		color: #FFFFFF;
@@ -269,7 +273,7 @@
 		background-color: #FFFFFF;
 		border-radius: 40rpx;
 		font-size: 32rpx;
-		color: #CD3A44;
+		color: #ED5941;
 		box-shadow: 0rpx 0rpx 10rpx #AAAAAA;
 		float:right;
 	}
