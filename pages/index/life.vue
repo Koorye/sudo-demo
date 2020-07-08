@@ -6,8 +6,42 @@
 			<block slot="backText">返回</block>
 			<block slot="content">SUDO生活</block>
 		</cu-custom>
+    
+    <!-- 功能栏 -->
+    <view id="functionBox">
+      <view>
+        <view>
+          <image class="iconBox" src="/static/icon/education.png"></image>
+        </view>
+        <view>家庭教育</view>
+      </view>
+      <view>
+        <view>
+          <image class="iconBox" src="/static/icon/community2.png"></image>
+        </view>
+        <view>社区活动</view>
+      </view>
+      <view>
+        <view>
+          <image class="iconBox" src="/static/icon/fee.png"></image>
+        </view>
+        <view>线上地摊</view>
+      </view>
+      <view>
+        <view>
+          <image class="iconBox" src="/static/icon/pet.png"></image>
+        </view>
+        <view>爱宠交流</view>
+      </view>
+      <view>
+        <view>
+          <image class="iconBox" src="/static/icon/car.png"></image>
+        </view>
+        <view>爱车一族</view>
+      </view>
+    </view>
 
-		<!-- 顶部栏 -->
+		<!-- 标题栏 -->
 		<view id="topBox">
 			<view id="topTitle">SUDO社圈</view>
 			<view id="submitBtn" @tap="openSubmitModal">发布</view>
@@ -16,13 +50,13 @@
 
 		<!-- 发布模态框 -->
 		<view id="modalBack"  v-show="showModal">
-		<view id="submitModal">
-			<textarea id="modalText" placeholder="请输入内容" v-model="modalMsg" />
-			<view id="modalBtnBox">
-				<button class="modalBtn" @tap="exitSubmitModal">退出</button>
-				<button class="modalBtn" @tap="submitMsg">发布</button>
-			</view>
-		</view>
+      <view id="submitModal">
+        <textarea id="modalText" placeholder="请输入内容" v-model="modalMsg" />
+        <view id="modalBtnBox">
+          <button class="modalBtn" @tap="exitSubmitModal">退出</button>
+          <button class="modalBtn" @tap="submitMsg">发布</button>
+        </view>
+      </view>
 		</view>
 
 		<!-- 社交信息 -->
@@ -123,13 +157,35 @@
 </script>
 
 <style>
+  .back{
+    background: #FFFFFF;
+  }
+  
+  #functionBox{
+    z-index: 999;
+    display: flex;
+    position: fixed;
+    background-color: #FFFFFF;
+    width: 100%;
+    justify-content: space-around;
+    padding: 20rpx;
+    font-weight: bold;
+    font-size: 24rpx;
+    text-align: center;
+  }
+  
+  .iconBox{
+    width: 100rpx;
+    height: 100rpx;
+  }
+  
 	#topBox {
+    top: 270rpx;
 		z-index: 999;
 		width: 100%;
 		padding-left: 5%;
-		padding-top: 40rpx;
 		display: flex;
-		color: #CD3A44;
+		color: #ED5941;
 		font-size: 40rpx;
 		position: fixed;
 		background-color: #FFFFFF;
@@ -137,7 +193,6 @@
 
 	#topTitle {
 		font-size: 40rpx;
-		font-weight: bold;
 	}
 
 	#submitBtn {
@@ -147,13 +202,13 @@
 		width: 120rpx;
 		height: 60rpx;
 		color: #FFFFFF;
-		background-color: #CD3A44;
-		border-radius: 24rpx;
+		background-color: #ED5941;
+		border-radius: 30rpx;
 		font-size: 34rpx;
 	}
 
 	#blank {
-		height: 160rpx;
+		height: 240rpx;
 	}
 
 	#modalBack{
@@ -200,7 +255,7 @@
 		height: 80rpx;
 		margin-top: 40rpx;
 		color: #FFFFFF;
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		border-radius: 20rpx;
 	}
 
@@ -258,7 +313,7 @@
 	}
 
 	.titleBox {
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		height: 64rpx;
 		width: 180rpx;
 		text-align: center;
@@ -283,11 +338,5 @@
 		margin-bottom: 20rpx;
 		height: 1rpx;
 		background: #AAAAAA;
-	}
-	
-    #demo{
-		font-size: 40rpx;
-		font-weight: bold;
-		text-align: center;
 	}
 </style>

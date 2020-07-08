@@ -3580,7 +3580,7 @@ scroll-view.cu-steps .cu-item {
 
 .bg-custom {
 	color: #ffffff;
-	background-color: #CD3A44;
+	background-color: rgb(239,109,83);
 }
 
 .shadow[class*="-red"] {

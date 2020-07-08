@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view id="backBox" class="page">
 		<view class="back"></view>
 		<!-- 导航栏 -->
 		<cu-custom bgColor="bg-custom" :isBack="false">
@@ -22,30 +22,22 @@
 			<!-- 功能区 -->
 			<view id="functionTable">
 				<view class="functionBox">
-					<image class="functionImg" src="/static/icon/member.png"></image>
-					<view>党组织部</view>
+					<image class="functionImg" src="/static/icon/right.png"></image>
+					<view>权益中心</view>
 				</view>
 				<view class="functionBox">
-					<image class="functionImg" src="/static/icon/property.png"></image>
-					<view>物业</view>
+					<image class="functionImg" src="/static/icon/bill.png"></image>
+					<view>物业账单</view>
 				</view>
 				<view class="functionBox">
-					<image class="functionImg" src="/static/icon/neighborhood.png"></image>
-					<view>居委会</view>
+					<image class="functionImg" src="/static/icon/star.png"></image>
+					<view>收藏</view>
 				</view>
 			</view>
 		</view>
 
 		<!-- 选项区 -->
 		<view class="optionBox">
-			<view class="option" @tap="toFeedBack">
-				<view>
-					<image class="optionImg" src="/static/icon/feedback.png"></image>
-				</view>
-				<view class="optionText">反馈</view>
-				<view class="optionMark"> > </view>
-			</view>
-			<view class="line"></view>
 			<view class="option">
 				<view>
 					<image class="optionImg" src="/static/icon/my_activity.png"></image>
@@ -100,11 +92,6 @@
 			});
 		},
 		methods: {
-			toFeedBack() {
-				uni.navigateTo({
-					url: "feedback"
-				});
-			},
 			toAuthentication() {
 				uni.navigateTo({
 					url: "authentication"
@@ -151,11 +138,17 @@
 	}
 </script>
 
-<style>
+<style>  
+  #backBox{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0) 34%, white 34%, white 100%);
+  }
+  
 	#top {
 		width: 100%;
 		height: 300rpx;
-		background-color: #CD3A44;
 		z-index: 1;
 		position: absolute;
 	}
@@ -209,14 +202,14 @@
 		text-align: center;
 		font-size: 27rpx;
 		font-weight: bold;
-		color: #CD3A44;
+		color: #ED5941;
 	}
 
 	.functionImg {
 		width: 133rpx;
 		height: 133rpx;
 		padding: 20rpx;
-		border: 4rpx solid #CD3A44;
+		border: 4rpx solid #ED5941;
 		border-radius: 50%;
 		box-shadow: 0rpx 0rpx 15rpx #AAAAAA;
 		margin-bottom: 10rpx;
@@ -262,13 +255,14 @@
 	}
 	
 	.btn {
-		margin-top: 60rpx;
+		margin: 120rpx auto;
 		width: 400rpx;
 		height: 80rpx;
-		background-color: #CD3A44;
-		border-radius: 40rpx;
+    border: 4rpx solid #ED5941;
+		border-radius: 20rpx;
 		font-size: 32rpx;
-		color: #FFFFFF;
+    font-weight: bold;
+		color: #ED5941;
 		box-shadow: 0rpx 0rpx 10rpx #AAAAAA;
 	}
 </style>

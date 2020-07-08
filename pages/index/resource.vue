@@ -9,75 +9,79 @@
 
 		<!-- 功能区 -->
 		<view>
-			<view class="functionTable">
-				<view class="functionBox" @tap="toMap">
-					<view>
-						<image class="functionImg" src="/static/icon/government.png"></image>
-					</view>
-					<view>政务机构</view>
-					<view class="tagBox" v-show="tags[0]">{{tags[0]}}</view>
-				</view>
-				<view class="functionBox">
-					<view>
-						<image class="functionImg" src="/static/icon/property.png"></image>
-					</view>
-					<view>物业</view>
-					<view class="tagBox" v-show="tags[1]">{{tags[1]}}</view>
-				</view>
-				<view class="functionBox">
-					<view>
-						<image class="functionImg" src="/static/icon/neighborhood.png"></image>
-					</view>
-					<view>居委会</view>
-					<view class="tagBox" v-show="tags[2]">{{tags[2]}}</view>
-				</view>
-			</view>
-			<view class="functionTable">
-				<view class="functionBox">
-					<view>
-						<image class="functionImg" src="/static/icon/market.png"></image>
-					</view>
-					<view>社区市场</view>
-					<view class="tagBox" v-show="tags[3]">{{tags[3]}}</view>
-				</view>
-				<view class="functionBox">
-					<view>
-						<image class="functionImg" src="/static/icon/bank.png"></image>
-					</view>
-					<view>银行业务</view>
-					<view class="tagBox" v-show="tags[4]">{{tags[4]}}</view>
-				</view>
-				<view class="functionBox">
-					<view>
-						<image class="functionImg" src="/static/icon/delivery.png"></image>
-					</view>
-					<view>快递</view>
-					<view class="tagBox" v-show="tags[5]">{{tags[5]}}</view>
-				</view>
-			</view>
-			<view class="functionTable">
-				<view class="functionBox">
-					<view>
-						<image class="functionImg" src="/static/icon/trip.png"></image>
-					</view>
-					<view>旅游在线</view>
-					<view class="tagBox" v-show="tags[6]">{{tags[6]}}</view>
-				</view>
-				<view class="functionBox">
-					<view>
-						<image class="functionImg" src="/static/icon/volunteer.png"></image>
-					</view>
-					<view>志愿服务</view>
-					<view class="tagBox" v-show="tags[7]">{{tags[7]}}</view>
-				</view>
-				<view class="functionBox hidden">
-					<view>
-						<image class="functionImg" src="/static/icon.png"></image>
-					</view>
-					<view class="tagBox" v-show="tags[8]">{{tags[8]}}</view>
-				</view>
-			</view>
-		</view>
+      <view class="functionBox">
+        <view>< 全部服务</view>
+        <!-- 搜索框 -->
+        <view id="searchForm">
+          <input id="searchText" type="text" placeholder="搜索" placeholder-style="color:#99999B" v-model="info" />
+          <image id="searchBtn" src="/static/icon/search2.png"></image>
+        </view>
+      </view>
+      
+      <view class="titleBox">我要报修</view>
+      <view class="functionRow">
+        <view>
+          <view>
+            <image class="functionIcon" src="../../static/icon/repair.png"></image>
+          </view>
+          <view>我要维修</view>
+        </view>
+        <view>
+          <view>
+            <image class="functionIcon" src="../../static/icon/door.png"></image>
+          </view>
+          <view>门禁钥匙</view>
+        </view>
+        <view class="hidden">
+          <view>
+            <image class="functionIcon" src="../../static/icon/repair.png"></image>
+          </view>
+          <view>我要维修</view>
+        </view>
+      </view>
+      <view class="titleBox">意见反馈</view>
+      <view class="functionRow">
+        <view @tap="toFeedBack">
+          <view>
+            <image class="functionIcon" src="../../static/icon/feedback2.png"></image>
+          </view>
+          <view>意见与反馈</view>
+        </view>
+        <view>
+          <view>
+            <image class="functionIcon" src="../../static/icon/consult.png"></image>
+          </view>
+          <view>我要咨询</view>
+        </view>
+        <view class="hidden">
+          <view>
+            <image class="functionIcon" src="../../static/icon/repair.png"></image>
+          </view>
+          <view>我要维修</view>
+        </view>
+      </view>
+      <view class="titleBox">更多功能</view>
+      <view class="functionRow">
+        <view>
+          <view>
+            <image class="functionIcon" src="../../static/icon/environment2.png"></image>
+          </view>
+          <view>园区环境</view>
+        </view>
+        <view>
+          <view>
+            <image class="functionIcon" src="../../static/icon/customer.png"></image>
+          </view>
+          <view>访客通行</view>
+        </view>
+        <view>
+          <view>
+            <image class="functionIcon" src="../../static/icon/fee3.png"></image>
+          </view>
+          <view>我要缴费</view>
+        </view>
+      </view>
+    </view>
 	</view>
 </template>
 
@@ -85,55 +89,69 @@
 	export default {
 		data() {
 			return {
-				tags: [2, 1, 0, 0, 2, 0, 2, 0]
+				info: ''
 			}
 		},methods:{
-			toMap(){
-				uni.redirectTo({
-					url:"map"
-				})
+			toFeedBack() {
+				uni.navigateTo({
+					url: "feedback"
+				});
 			}
 		}
 	}
 </script>
 
 <style>
-	.tagBox {
-		z-index: 2;
-		position: relative;
-		left: 130rpx;
-		bottom: 190rpx;
-		width: 46rpx;
-		height: 46rpx;
-		border-radius: 50%;
-		background-color: #F5D46B;
-		padding-top: 10rpx;
-		font-size: 27rpx;
-		color: #35312E;
-	}
-
-	.functionTable {
-		display: flex;
-		justify-content: space-around;
-	}
-
-	.functionBox {
-		width: 200rpx;
-		height: 200rpx;
-		text-align: center;
-		font-size: 27rpx;
-		font-weight: bold;
-		color: #CD3A44;
-		margin-top: 60rpx;
-	}
-
-	.functionImg {
-		z-index: 1;
-		width: 150rpx;
-		height: 150rpx;
-		border: 4rpx solid #CD3A44;
-		padding: 20rpx;
-		border-radius: 50%;
-		box-shadow: 0rpx 0rpx 15rpx #AAAAAA;
-	}
+  .back{
+    background: #FFFFFF;
+  }
+  
+  .functionBox{
+    margin: 30rpx 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 40rpx;
+  }
+  
+  #searchForm {
+  	display: flex;
+  	align-items: center;
+  	width: 65%;
+  	height: 60rpx;
+  	padding: 30rpx;
+    background-color: #FAEBEC;
+  	border-radius: 40rpx;
+  }
+  
+  #searchText {
+  	width: 90%;
+  	color: #99999B;
+  	font-size: 32rpx;
+  }
+  
+  #searchBtn {
+  	width: 40rpx;
+  	height: 40rpx;
+  }
+  
+  .titleBox{
+    margin: 40rpx 60rpx;
+    color: #008873;
+    font-size: 36rpx;
+    font-weight: bold;
+  }
+  
+  .functionRow{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: #99999B;
+    font-weight: bold;
+  }
+  
+  .functionIcon{
+    height: 140rpx;
+    width: 140rpx;
+  }
 </style>

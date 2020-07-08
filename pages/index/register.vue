@@ -45,7 +45,7 @@
 					<input type="password" placeholder="请确认密码" placeholder-style="color:#A5A5A5" v-model="verify" @input="checkRegisterPermit()"/>
 				</view>
 				<view class="line"></view>
-				<button class="btn" @tap="register" v-bind:disabled="dis_register">注册</button>
+				<button class="btn" @tap="register" v-bind:disabled="dis_register">现在注册</button>
 				<view id="navBox">
 					<navigator id="navBtn">已有账户点击登录</navigator>
 					<navigator id="navBtn">注册须知</navigator>
@@ -145,8 +145,8 @@
 		z-index: 1;
 		position: absolute;
 		width: 100%;
-		height: 700rpx;
-		background-color: #CD3A44;
+		height: 120%;
+		background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, white 50%, white 100%);
 	}
 
 	#logoBox {
@@ -168,7 +168,7 @@
 		position: relative;
 		top: 50rpx;
 		width: 90%;
-		height: 800rpx;
+		height: 900rpx;
 		margin-left: 5%;
 		padding-top: 2rpx;
 		background-color: #FAEBEC;
@@ -186,7 +186,7 @@
 	
 	.sendCaptcha {
 		width: 40%;
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		border-radius: 40rpx;
 		font-size: 25rpx;
 		color: #FFFFFF;
@@ -204,7 +204,7 @@
 		margin-top: 60rpx;
 		width: 400rpx;
 		height: 80rpx;
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		border-radius: 40rpx;
 		font-size: 32rpx;
 		color: #FFFFFF;

@@ -16,7 +16,6 @@
 				<input id="searchText" type="text" placeholder="搜索" placeholder-style="color:#FFFFFF" v-model="info" />
 				<image id="searchBtn" src="/static/icon/search.png"></image>
 			</view>
-			{{info}}
 		</view>
 	</view>
 </template>
@@ -35,7 +34,6 @@
 	#searchBox {
 		width: 100%;
 		height: 900rpx;
-		background-color: #CD3A44;
 	}
 
 	#searchTitle {

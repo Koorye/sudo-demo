@@ -72,6 +72,10 @@
 </script>
 
 <style>
+  .back{
+    background: #FFFFFF;
+  }
+  
 	#backBtn {
 		margin-bottom: 10rpx;
 	}
@@ -147,7 +151,7 @@
 		margin-top: 20rpx;
 		padding-left: 30rpx;
 		background-color: #FAEBEC;
-		border: 2rpx solid #CD3A44;
+		border: 2rpx solid #ED5941;
 		border-radius: 20rpx;
 	}
 
@@ -157,7 +161,7 @@
 		width: 120rpx;
 		height: 60rpx;
 		background-color: #448ACA;
-		border-radius: 20rpx;
+		border-radius: 30rpx;
 		color: #FFFFFF;
 		font-size: 34rpx;
     text-align: center;

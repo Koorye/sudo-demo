@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view id="backBox">
 		<view class="back"></view>
 		<!-- 导航栏 -->
 		<cu-custom bgColor="bg-custom" :isBack="true">
@@ -26,38 +26,39 @@
 
 		<!-- 党建表格 -->
 		<view>
-			<view class="titleBox">
-				<text>社区党建</text>
-			</view>
 			<view class="iconTable">
 				<view class="iconBox">
 					<image class="iconIndex" src="/static/icon/history2.png"></image>
 					<view>我党历史</view>
 				</view>
 				<view class="iconBox">
-					<image class="iconIndex" src="/static/icon/guide.png"></image>
-					<view>会议指示</view>
+					<image class="iconIndex" src="/static/icon/info.png"></image>
+					<view>党建信息</view>
 				</view>
 				<view class="iconBox">
 					<image class="iconIndex" src="/static/icon/meeting.png"></image>
 					<view>支部会议</view>
 				</view>
-			</view>
-			<view class="iconTable">
-				<view class="iconBox">
-					<image class="iconIndex" src="/static/icon/infomation.png">
-						<view>党建信息</view>
-				</view>
-				<view class="iconBox">
-					<image class="iconIndex" src="/static/icon/activity.png">
-						<view>党建活动</view>
-				</view>
-				<view class="iconBox">
-					<image class="iconIndex" src="/static/icon/giveback.png">
-						<view>反馈意见</view>
-				</view>
+        <view class="iconBox">
+        	<image class="iconIndex" src="/static/icon/feedback.png"></image>
+        	<view>反馈意见</view>
+        </view>
 			</view>
 		</view>
+
+    <!-- 物业公告 -->
+    <view class="announceBox">
+      <view class="announceTitle">
+        <view>物业</view>
+        <view>公告</view>
+      </view>
+      <view class="verticalLine"></view>
+      <view class="announceDetail">
+        <view>提示：疫情防控提醒</view>
+        <view class="hidden">hidden</view>
+        <view> > </view>
+      </view>
+    </view>
 
 		<!-- 通知栏 -->
 		<view id="msgBar">
@@ -65,7 +66,7 @@
 				<text>通知送达</text>
 			</view>
 			<view class="msgBox">
-				<image class="danger" src="/static/icon/danger.png">
+				<image class="danger" src="/static/icon/notice.png">
 					<view>
 						<view class="titleMsg">体温监测通知</view>
 						<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
@@ -73,7 +74,7 @@
 					</view>
 			</view>
 			<view class="msgBox">
-				<image class="danger" src="/static/icon/danger.png">
+				<image class="danger" src="/static/icon/notice.png">
 					<view>
 						<view class="titleMsg">体温监测通知</view>
 						<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
@@ -81,13 +82,21 @@
 					</view>
 			</view>
 			<view class="msgBox">
-				<image class="danger" src="/static/icon/danger.png">
+				<image class="danger" src="/static/icon/notice.png">
 					<view>
 						<view class="titleMsg">体温监测通知</view>
 						<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
 						<view class="dateMsg">4.20 12:00</view>
 					</view>
 			</view>
+      <view class="msgBox">
+      	<image class="danger" src="/static/icon/notice.png">
+      		<view>
+      			<view class="titleMsg">体温监测通知</view>
+      			<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
+      			<view class="dateMsg">4.20 12:00</view>
+      		</view>
+      </view>
 		</view>
 	</view>
 </template>
@@ -100,19 +109,11 @@
 				swiperList: [{
 					id: 0,
 					type: 'image',
-					url: '/static/img/index_01.jpg'
-				}, {
-					id: 1,
-					type: 'image',
-					url: '/static/img/index_02.jpg'
-				}, {
-					id: 2,
-					type: 'image',
-					url: '/static/img/index_03.jpg'
+					url: '/static/img/index_01.jfif'
 				}, {
 					id: 3,
 					type: 'image',
-					url: '/static/img/index_04.jpg'
+					url: '/static/img/index_02.jfif'
 				}],
 				dotStyle: false,
 				towerStart: 0,
@@ -126,9 +127,9 @@
 				key: "isLogin",
 				success(res) {
 					if(res.data == false) {   //若未登录，跳到登录页
-						uni.redirectTo({
-							url: "./login"
-						});
+						// uni.redirectTo({
+							// url: "./login"
+						// });
 					}
 					else {		//如果登录了，还要判断token是否过期
 						uni.getStorage({
@@ -159,9 +160,9 @@
 										key: "isLogin",
 										data: false
 									});
-									uni.redirectTo({
-										url: "./login"
-									});
+									// uni.redirectTo({
+										// url: "./login"
+									// });
 								}
 							},
 							fail() {
@@ -174,9 +175,9 @@
 					}
 				},
 				fail() {
-					uni.redirectTo({
-						url: "./login"
-					});
+					// uni.redirectTo({
+						// url: "./login"
+					// });
 				}
 			});
 		}
@@ -184,6 +185,13 @@
 </script>
 
 <style>
+  #backBox{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0,0) 20%, white 20%, white 100%);
+  }
+  
 	#searchBtn {
 		margin-top: 6rpx;
 		margin-right: 25rpx;
@@ -198,7 +206,8 @@
 	.titleBox {
 		width: 240rpx;
 		height: 80rpx;
-		background-color: #F5D46B;
+		background-color: #0E8873;
+    color: #FFFFFF;
 		border-radius: 30rpx;
 		text-align: center;
 		padding-top: 18rpx;
@@ -217,21 +226,54 @@
 	}
 
 	.iconBox {
-		color: #CD3A44;
+		color: #F7AB50;
 		text-align: center;
 		font-size: 30rpx;
 	}
 
 	.iconIndex {
-		width: 150rpx;
-		height: 150rpx;
+		width: 120rpx;
+		height: 120rpx;
 		padding: 30rpx;
 		border-radius: 50%;
-		background-color: #CD3A44;
+		background-color: #F7AB50;
 		color: #FFFFFF;
 		box-shadow: -10rpx 10rpx 5rpx #DDDDDD;
 		margin-bottom: 20rpx;
 	}
+
+  .announceBox{
+    height: 120rpx;
+    width: 94%;
+    margin: 20rpx 3%;
+    padding: 3%;
+    border-radius: 20rpx;
+    display: flex;
+    font-size: 36rpx;
+    justify-content: space-between;
+    align-items: center;
+    color: #707070;
+    background-color: #FFF4E0;
+  }
+  
+  .announceDetail{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  
+  .verticalLine{
+    width: 2rpx;
+    height: 60rpx;
+    background: #707070;
+  }
+
+  .announceTitle{
+    color: #F7AB50;
+    font-weight: bold;
+    font-size: 38rpx;
+    border-right: #707070;
+  }
 
 	.msgBox {
 		display: flex;

@@ -1,16 +1,16 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "首页",
-				"background":"#FFFFFF"
-			}
-		},
-		{
 			"path": "pages/index/login",
 			"style": {
 				"navigationBarTitleText": "登录",
+				"background":"#FFFFFF"
+			}
+		},
+    {
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
 				"background":"#FFFFFF"
 			}
 		},
@@ -103,27 +103,27 @@
 		"color": "#FFFFFF",
 		"selectedColor": "#FFFFFF",
 		"borderStyle": "black",
-		"backgroundColor": "#CD3A44",
+		"backgroundColor": "#EF6D53",
 		"list": [{
 			"pagePath": "pages/index/index",
-			"iconPath": "static/icon/index.png",
-			"selectedIconPath": "static/icon/index_selected.png",
-			"text": "首页"
-		}, {
-			"pagePath": "pages/index/automony",
-			"iconPath": "static/icon/cloud.png",
-			"selectedIconPath": "static/icon/cloud_selected.png",
-			"text": "自治"
+			"iconPath": "static/icon/message.png",
+			"selectedIconPath": "static/icon/message-selected.png",
+			"text": "资讯"
 		}, {
 			"pagePath": "pages/index/resource",
-			"iconPath": "static/icon/resource.png",
-			"selectedIconPath": "static/icon/resource_selected.png",
-			"text": "资源"
+			"iconPath": "static/icon/service.png",
+			"selectedIconPath": "static/icon/service-selected.png",
+			"text": "服务"
+		}, {
+			"pagePath": "pages/index/todo",
+			"iconPath": "static/icon/purchase.png",
+			"selectedIconPath": "static/icon/purchase-selected.png",
+			"text": "优购"
 		}, {
 			"pagePath": "pages/index/life",
-			"iconPath": "static/icon/life.png",
-			"selectedIconPath": "static/icon/life_select.png",
-			"text": "生活"
+			"iconPath": "static/icon/forum.png",
+			"selectedIconPath": "static/icon/forum-selected.png",
+			"text": "论坛"
 		}, {
 			"pagePath": "pages/index/me",
 			"iconPath": "static/icon/me.png",

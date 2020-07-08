@@ -117,8 +117,8 @@
 		z-index: 1;
 		position: absolute;
 		width: 100%;
-		height: 700rpx;
-		background-color: #CD3A44;
+		height: 100%;
+    background: linear-gradient(rgba(0,0,0,0) 0%,rgba(0,0,0,0) 40%, white 40%,white 100%);
 	}
 
 	#logoBox {
@@ -179,7 +179,7 @@
 	.btn {
 		width: 200rpx;
 		height: 80rpx;
-		background-color: #CD3A44;
+		background-color: #ED5941;
 		border-radius: 40rpx;
 		font-size: 32rpx;
 		color: #FFFFFF;
