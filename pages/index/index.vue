@@ -127,9 +127,9 @@
 				key: "isLogin",
 				success(res) {
 					if(res.data == false) {   //若未登录，跳到登录页
-						// uni.redirectTo({
-							// url: "./login"
-						// });
+						uni.redirectTo({
+							url: "./login"
+						});
 					}
 					else {		//如果登录了，还要判断token是否过期
 						uni.getStorage({
@@ -160,9 +160,9 @@
 										key: "isLogin",
 										data: false
 									});
-									// uni.redirectTo({
-										// url: "./login"
-									// });
+									uni.redirectTo({
+										url: "./login"
+									});
 								}
 							},
 							fail() {
@@ -175,9 +175,9 @@
 					}
 				},
 				fail() {
-					// uni.redirectTo({
-						// url: "./login"
-					// });
+					uni.redirectTo({
+						url: "./login"
+					});
 				}
 			});
 		}
