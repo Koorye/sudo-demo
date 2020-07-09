@@ -10,7 +10,7 @@
 		<!-- 功能区 -->
 		<view>
       <view class="functionBox">
-        <view>< 全部服务</view>
+        <view>{{'<'}}&nbsp;全部服务</view>
         <!-- 搜索框 -->
         <view id="searchForm">
           <input id="searchText" type="text" placeholder="搜索" placeholder-style="color:#99999B" v-model="info" />

@@ -123,6 +123,7 @@
 		},
 		onLoad() {				// 进入首页时，判断是否已登录。
 			var _this = this;
+      let verify_token = '';
 			uni.getStorage({
 				key: "isLogin",
 				success(res) {
@@ -132,12 +133,7 @@
 						});
 					}
 					else {		//如果登录了，还要判断token是否过期
-						uni.getStorage({
-							key: "token",
-							success(res) {
-								_this.token = res.data;
-							}
-						});
+            _this.token = uni.getStorageSync('token');
 						uni.request({
 							method: "POST",
 							url: _this.requestURL + "/accounts/verifyToken",
@@ -145,18 +141,19 @@
 							header:{
 								'content-type': 'application/x-www-form-urlencoded',
 								'token': _this.token
-							},
+              },
 							success(res) {
 								let response = res.data;
+                console.log(response)
 								if(response.success) {		//如果没过期，刷新token
-									_this.token = response.data;
+									verify_token = response.data;
 									uni.setStorage({
 										key: "token",
 										data: _this.token
 									});
 								}
 								else {						//如果过期了，重新登录
-									uni.setStorage({
+                  uni.setStorage({
 										key: "isLogin",
 										data: false
 									});

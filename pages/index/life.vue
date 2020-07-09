@@ -180,15 +180,17 @@
   }
   
 	#topBox {
-    top: 270rpx;
+    top: 310rpx;
 		z-index: 999;
 		width: 100%;
+    height: 120rpx;
 		padding-left: 5%;
+    padding-top: 20rpx;
 		display: flex;
 		color: #ED5941;
 		font-size: 40rpx;
 		position: fixed;
-		background-color: #FFFFFF;
+		background:linear-gradient(white 0%,white 60%,rgba(0,0,0,0) 100%);
 	}
 
 	#topTitle {
@@ -208,7 +210,7 @@
 	}
 
 	#blank {
-		height: 240rpx;
+		height: 280rpx;
 	}
 
 	#modalBack{
