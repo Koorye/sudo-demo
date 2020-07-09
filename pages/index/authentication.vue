@@ -138,7 +138,7 @@
 					url: _this.requestURL + "/auths",
 					dataType: "json",
 					header:{
-						'content-type': 'application/x-www-form-urlencoded',
+						'content-type': 'application/json',
 						'token': _this.token
 					},
 					data: {
@@ -153,6 +153,7 @@
 					},
 					success(res) {
 						var response = res.data;
+						console.log(response);
 						if(response.success) {
 							console.log(response)
 							uni.showToast({
