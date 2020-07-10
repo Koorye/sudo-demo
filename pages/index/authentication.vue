@@ -68,7 +68,7 @@
 				roomNo: ''			//房号
 			}
 		},
-		onShow() {
+		onLoad() {
 			let _this = this;
 			uni.getStorage({
 				key: "username",
@@ -87,7 +87,7 @@
 				url: _this.requestURL + "/auths/users/" + _this.username,
 				dataType: "json",
 				header:{
-					'content-type': 'application/x-www-form-urlencoded',
+					'content-type': 'application/json',
 					'token': _this.token
 				},
 				success(res) {
@@ -130,15 +130,19 @@
 			},
 			cancel() {
 				this.dis_update = true;
+				uni.redirectTo({
+					url: "./authentication"
+				});
 			},
 			submit() {
 				var _this = this;
+				
 				uni.request({
 					method: "POST",
 					url: _this.requestURL + "/auths",
 					dataType: "json",
 					header:{
-						'content-type': 'application/json',
+						'content-type': 'application/x-www-form-urlencoded',
 						'token': _this.token
 					},
 					data: {

@@ -64,7 +64,8 @@
 				password: '',
 				verify: '',
 				dis_register: true,
-				showSendCaptcha: false
+				showSendCaptcha: false,
+				authCode: ''	// sms接口返回的code
 			}
 		},
 		methods: {
@@ -82,13 +83,46 @@
 					this.dis_register = true;
 			},
 			sendCaptcha() {							//获取验证码
-				uni.showModal({
-					title: "验证码",
-					content: "0000"
+				let _this = this;
+				uni.request({
+					method: "POST",
+					url: _this.requestURL + "/accounts/sms",
+					dataType: "json",
+					header:{
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					data:{
+						"tel": _this.username,
+					},
+					success(res) {
+						let response = res.data;
+						console.log(response);
+						if(response.success) {
+							uni.showToast({
+								title: '已发送',
+								icon: 'none',
+								duration: 1000
+							});
+							_this.authCode = response.data;
+						}
+						else {
+							uni.showModal({
+								title: "失败",
+								content: response.errMsg
+							});
+						}
+					},
+					fail() {
+						uni.showModal({
+							title: "发送失败",
+							content: "请检查网络连接"
+						});
+					}
 				});
 			},
 			register() {
-				if(this.password != this.verify) {
+				let _this = this;
+				if(_this.password != _this.verify) {
 					uni.showToast({
 						title: '两次输入密码不一致',
 						icon: 'none',
@@ -98,15 +132,16 @@
 				}
 				uni.request({
 					method: "POST",
-					url: this.requestURL + "/accounts/register",
+					url: _this.requestURL + "/accounts/register",
 					dataType: "json",
 					header:{
 						'content-type': 'application/x-www-form-urlencoded'
 					},
 					data:{
-						"username": this.username,
-						"code": this.captcha,
-						"password": this.password
+						"username": _this.username,
+						"code": _this.captcha,
+						"password": _this.password,
+						"authCode": _this.authCode
 					},
 					success(res) {
 						let response = res.data;
