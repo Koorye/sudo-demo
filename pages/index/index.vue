@@ -118,12 +118,39 @@
 				dotStyle: false,
 				towerStart: 0,
 				direction: '',
-				token: ''
+				token: '',
+				username: '',
+				news: []		//存放所有通知信息
 			}
+		},
+		onShow() {
+			var _this = this;
+			_this.username = uni.getStorageSync('username');
+			uni.request({
+				method: "GET",
+				url: _this.requestURL + "/notices/users/" + _this.username,
+				dataType: "json",
+				header:{
+					'token': _this.token
+				},
+				success(res) {
+					let response = res.data;
+					if(response.success) {
+						_this.news = response.data;
+					}
+				},
+				fail() {
+					uni.showToast({
+						title: '请检查网络连接',
+						icon: 'none',
+						duration: 1000
+					});
+				}
+			});
 		},
 		onLoad() {				// 进入首页时，判断是否已登录。
 			var _this = this;
-      let verify_token = '';
+			let verify_token = '';
 			uni.getStorage({
 				key: "isLogin",
 				success(res) {
@@ -144,12 +171,12 @@
               },
 							success(res) {
 								let response = res.data;
-                console.log(response)
+								console.log(response)
 								if(response.success) {		//如果没过期，刷新token
 									verify_token = response.data;
 									uni.setStorage({
 										key: "token",
-										data: _this.token
+										data: response.data
 									});
 								}
 								else {						//如果过期了，重新登录
