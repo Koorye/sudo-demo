@@ -35,6 +35,7 @@
 					<button class="btn" @tap="login" v-bind:disabled="dis_login">登录</button>
 					<button class="btn" @tap="register">注册</button>
 				</view>
+        <view id="versionBox">Version: {{ version }}</view>
 			</view>
 		</view>
 	</view>
@@ -46,6 +47,7 @@
 			return {
 				username: '',
 				password: '',
+        version: this.globalVersion,
 				dis_login: true       // 没填写手机号和密码时，不允许点击登录
 			}
 		},
@@ -175,6 +177,12 @@
 		justify-content: space-around;
 		margin-top: 140rpx;
 	}
+
+  #versionBox {
+    margin: 20rpx 40rpx;
+    font-size: 30rpx;
+    color: #35312E;
+  }
 
 	.btn {
 		width: 200rpx;
