@@ -10,7 +10,7 @@ App.mpType = 'app'
 Vue.prototype.requestURL = "https://api.imlehr.com/sudo"
 Vue.prototype.globalUserID = "向日葵"
 Vue.prototype.globalUserSculptrue = "/static/icon/sculptrue_boy.png"
-Vue.prototype.globalVersion = '1.1.1 Beta'
+Vue.prototype.globalVersion = '1.1.3 Beta'
 
 const app = new Vue({
     ...App
