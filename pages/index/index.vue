@@ -65,37 +65,25 @@
 			<view class="titleBox">
 				<text>通知送达</text>
 			</view>
-			<view class="msgBox">
-				<image class="danger" src="/static/icon/notice.png">
-					<view>
-						<view class="titleMsg">体温监测通知</view>
-						<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
-						<view class="dateMsg">4.20 12:00</view>
-					</view>
-			</view>
-			<view class="msgBox">
-				<image class="danger" src="/static/icon/notice.png">
-					<view>
-						<view class="titleMsg">体温监测通知</view>
-						<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
-						<view class="dateMsg">4.20 12:00</view>
-					</view>
-			</view>
-			<view class="msgBox">
-				<image class="danger" src="/static/icon/notice.png">
-					<view>
-						<view class="titleMsg">体温监测通知</view>
-						<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
-						<view class="dateMsg">4.20 12:00</view>
-					</view>
-			</view>
-      <view class="msgBox">
-      	<image class="danger" src="/static/icon/notice.png">
-      		<view>
-      			<view class="titleMsg">体温监测通知</view>
-      			<view class="contentMsg">maecenas volutpat, odio eget imperdiet</view>
-      			<view class="dateMsg">4.20 12:00</view>
-      		</view>
+			<!-- <view class="msgBox"> -->
+				<!-- <image class="danger" src="/static/icon/notice.png"> -->
+					<!-- <view> -->
+						<!-- <view class="titleMsg">体温监测通知</view> -->
+						<!-- <view class="contentMsg">maecenas volutpat, odio eget imperdiet</view> -->
+						<!-- <view class="dateMsg">4.20 12:00</view> -->
+					<!-- </view> -->
+			<!-- </view> -->
+			<view class="msgBox" v-for="(msg,index) in news" :key="msg.noticeId">
+        <image class="danger" src="/static/icon/notice.png"></image>
+        <view>
+          <view class="titleMsg">{{ msg.title }}</view>
+          <view class="contentMsg">{{ msg.context }}</view>
+          <view class="dateMsg">
+          <span>{{ msg.time }}</span>
+          <span class="readMsg" v-if="msg.hasRead">已读</span>
+          <span class="readMsg" v-else>未读</span>
+          </view>
+        </view>
       </view>
 		</view>
 	</view>
@@ -138,6 +126,7 @@
 					if(response.success) {
 						_this.news = response.data;
 					}
+          console.log(_this.news);
 				},
 				fail() {
 					uni.showToast({
@@ -332,6 +321,10 @@
 		font-size: 20rpx;
 		color: #9A9A9A;
 	}
+  
+  .readMsg{
+    margin: 0 20rpx;
+  }
 
 	.danger {
 		height: 100rpx;

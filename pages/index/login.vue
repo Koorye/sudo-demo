@@ -74,18 +74,21 @@
 						let response = res.data;
 						console.log(response);
 						if(response.success) {			// 登录成功时，记录下token，并跳转到首页。并且下次打开app时，不再进入登录页面
-							uni.setStorage({
-								key: "token",
-								data: response.data,
-							});
-							uni.setStorage({
-								key: "isLogin",
-								data: true
-							});
-							uni.setStorage({
-								key: "username",
-								data: this.username
-							});
+							// uni.setStorage({
+								// key: "token",
+								// data: response.data,
+							// });
+							// uni.setStorage({
+								// key: "isLogin",
+								// data: true
+							// });
+							// uni.setStorage({
+								// key: "username",
+								// data: this.username
+							// });
+              uni.setStorageSync("token",response.data);
+              uni.setStorageSync("isLogin",true);
+              uni.setStorageSync("username",this.username);
 							uni.switchTab({
 								url: "index"
 							});
